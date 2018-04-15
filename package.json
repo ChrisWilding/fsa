@@ -1,0 +1,9 @@
+{
+  "name": "fsa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@gitlab.com:ChrisWilding/fsa.git",
+  "author": "Chris Wilding <hello@chriswilding.co.uk>",
+  "license": "Apache-2.0",
+  "private": true
+}
