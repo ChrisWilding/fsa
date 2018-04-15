@@ -18,7 +18,7 @@ export default {
         exclude: /node_modules/,
         test: /\.(js|jsx)$/,
         use: {
-          loader: "babel-loader",
+          loader: "babel-loader"
         }
       }
     ]
@@ -37,4 +37,4 @@ export default {
   resolve: {
     extensions: [".js", ".jsx"]
   }
-}
+};
