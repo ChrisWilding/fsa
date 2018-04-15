@@ -1,5 +1,8 @@
-import authoritiesBasic from "../../test/fixtures/authorities/basic.json";
-import establishmentsManchester from "../../test/fixtures/establishments/manchester.json";
+import es6Promise from "es6-promise";
+import "isomorphic-fetch";
+import config from "../config";
+
+es6Promise.polyfill();
 
 const transformAuthority = authority => ({
   id: authority.LocalAuthorityId,
@@ -10,7 +13,15 @@ const transformAuthority = authority => ({
 });
 
 const getAuthorities = () =>
-  Promise.resolve(authoritiesBasic)
+  fetch(`${config.BASE_URL}/authorities/basic`, {
+    headers: new Headers({
+      "X-API-Version": 2
+    })
+  })
+    .then(response => {
+      if (response.ok) return response.json();
+      throw new Error(`FSA API returned HTTP status ${response.status} - ${response.statusText}`);
+    })
     .then(({ authorities }) => authorities)
     .then(authorities => authorities.map(transformAuthority));
 
@@ -39,8 +50,16 @@ const transformEstablishments = establishments => {
   }, Object.assign({}, initialValues));
 };
 
-const getEstablishments = () =>
-  Promise.resolve(establishmentsManchester)
+const getEstablishments = localAuthorityId =>
+  fetch(`${config.BASE_URL}/establishments?localAuthorityId=${localAuthorityId}&pageSize=99999`, {
+    headers: new Headers({
+      "X-API-Version": 2
+    })
+  })
+    .then(response => {
+      if (response.ok) return response.json();
+      throw new Error(`FSA API returned HTTP status ${response.status} - ${response.statusText}`);
+    })
     .then(({ establishments }) => establishments)
     .then(transformEstablishments);
 

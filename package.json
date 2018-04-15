@@ -7,6 +7,8 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
@@ -29,6 +31,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
+    "jest-fetch-mock": "^1.5.0",
     "lint-staged": "^7.0.4",
     "prettier": "^1.12.0",
     "webpack": "^4.5.0",
@@ -46,6 +49,7 @@
     "test:watch": "yarn test --watch"
   },
   "jest": {
+    "automock": false,
     "setupTestFrameworkScriptFile": "<rootDir>test/setup.js"
   },
   "lint-staged": {

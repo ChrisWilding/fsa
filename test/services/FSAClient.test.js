@@ -1,9 +1,21 @@
+import { readFileSync } from "fs";
 import FSAClient from "../../src/services/FSAClient";
 
+const authoritiesBasic = readFileSync(`${__dirname}/../fixtures/authorities/basic.json`);
+const establishmentsManchester = readFileSync(
+  `${__dirname}/../fixtures/establishments/manchester.json`
+);
+
 describe("FSAClient", () => {
+  afterEach(() => {
+    global.fetch.resetMocks();
+  });
+
   describe("getAuthorities", () => {
-    it("gets a list of authorities with basic information", () =>
-      FSAClient.getAuthorities().then(data => {
+    it("gets a list of authorities with basic information", () => {
+      global.fetch.mockResponse(authoritiesBasic);
+
+      return FSAClient.getAuthorities().then(data => {
         expect(data).toEqual([
           {
             id: 213,
@@ -27,12 +39,26 @@ describe("FSAClient", () => {
             schemeType: 1
           }
         ]);
-      }));
+      });
+    });
+
+    it("handles an error response", () => {
+      global.fetch.mockResponse("", {
+        status: 500,
+        statusText: "internal server error"
+      });
+
+      return FSAClient.getAuthorities().catch(error => {
+        expect(error.message).toEqual("FSA API returned HTTP status 500 - internal server error");
+      });
+    });
   });
 
   describe("getEstablishments", () => {
-    it("gets a list of authorities with basic information", () =>
-      FSAClient.getEstablishments(180).then(data => {
+    it("gets a list of authorities with basic information", () => {
+      global.fetch.mockResponse(establishmentsManchester);
+
+      return FSAClient.getEstablishments(180).then(data => {
         expect(data).toEqual({
           "0": 0,
           "1": 6,
@@ -42,6 +68,18 @@ describe("FSAClient", () => {
           "5": 60,
           Exempt: 4
         });
-      }));
+      });
+    });
+
+    it("handles an error response", () => {
+      global.fetch.mockResponse("", {
+        status: 500,
+        statusText: "internal server error"
+      });
+
+      return FSAClient.getAuthorities().catch(error => {
+        expect(error.message).toEqual("FSA API returned HTTP status 500 - internal server error");
+      });
+    });
   });
 });

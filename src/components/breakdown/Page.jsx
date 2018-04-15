@@ -18,9 +18,15 @@ class Page extends Component {
   }
 
   componentDidMount() {
-    FSAClient.getAuthorities().then(authorities => {
-      this.setState({ authorities, loading: false });
-    });
+    FSAClient.getAuthorities()
+      .then(authorities => {
+        this.setState({ authorities, loading: false });
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch(error => {
+        this.setState({ error: true });
+        // Send error to APM or logging endpoint
+      });
   }
 
   selectAuthority(event) {
@@ -28,9 +34,14 @@ class Page extends Component {
     if (selectedAuthorityId === "default") {
       this.setState({ breakdown: null, selectedAuthorityId });
     } else {
-      FSAClient.getEstablishments(selectedAuthorityId).then(breakdown =>
-        this.setState({ breakdown, selectedAuthorityId })
-      );
+      this.setState({ loading: true });
+      FSAClient.getEstablishments(selectedAuthorityId)
+        .then(breakdown => this.setState({ breakdown, loading: false, selectedAuthorityId }))
+        // eslint-disable-next-line no-unused-vars
+        .catch(error => {
+          this.setState({ error: true });
+          // Send error to APM or logging endpoint
+        });
     }
   }
 
