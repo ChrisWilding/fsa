@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 const SelectAuthority = ({ authorities, onChange, value }) => (
   <div className="select-autority">

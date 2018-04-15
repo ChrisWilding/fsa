@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SelectAuthority from "../../src/components/breakdown/SelectAuthority";
+import SelectAuthority from "../../../src/components/breakdown/SelectAuthority";
 
 describe("SelectAuthority", () => {
   const authorities = [
@@ -37,7 +37,7 @@ describe("SelectAuthority", () => {
 
     const component = shallow(<SelectAuthority {...props} />);
 
-    expect(component.find("option").length).toEqual(1);
+    expect(component.find("option")).toHaveLength(1);
   });
 
   it("renders an option for each authority", () => {
