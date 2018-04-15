@@ -13,3 +13,5 @@ RUN yarn install --force && \
 
 FROM nginx:1.13.11-alpine
 COPY --from=0 /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+CMD /bin/sh -c "envsubst \\\$PORT < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
