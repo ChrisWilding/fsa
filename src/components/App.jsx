@@ -1,9 +1,7 @@
 import React from "react";
 
-const App = () => (
-  <div>
-    <h1>Hello World!</h1>
-  </div>
-);
+import BreakdownPage from "./breakdown/Page";
+
+const App = () => <BreakdownPage />;
 
 export default App;
