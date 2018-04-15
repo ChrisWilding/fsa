@@ -29,4 +29,19 @@ describe("FSAClient", () => {
         ]);
       }));
   });
+
+  describe("getEstablishments", () => {
+    it("gets a list of authorities with basic information", () =>
+      FSAClient.getEstablishments(180).then(data => {
+        expect(data).toEqual({
+          "0": 0,
+          "1": 6,
+          "2": 3,
+          "3": 10,
+          "4": 17,
+          "5": 60,
+          Exempt: 4
+        });
+      }));
+  });
 });
