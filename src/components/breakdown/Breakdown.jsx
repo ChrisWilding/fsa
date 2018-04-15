@@ -6,7 +6,7 @@ const Breakdown = ({ breakdown }) => {
   return (
     <div className="breakdown">
       <table>
-        <thead>
+        <thead className="breakdown__heading">
           <tr>
             <th>Rating</th>
             <th>Percentage</th>

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const SelectAuthority = ({ authorities, onChange, value }) => (
-  <div className="select-autority">
+  <div className="select-authority">
     <label htmlFor="authority">
       Select a local authority:
       <select name="authority" value={value} onChange={onChange}>

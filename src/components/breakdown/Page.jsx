@@ -55,7 +55,8 @@ class Page extends Component {
     }
 
     return (
-      <div>
+      <div className="breakdown-page">
+        <h1 className="breakdown-page__title">FSA Local Authority Breakdown</h1>
         <SelectAuthority
           authorities={this.state.authorities}
           onChange={this.selectAuthority}
