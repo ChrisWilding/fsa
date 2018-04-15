@@ -1,0 +1,43 @@
+{
+  "authorities": [
+    {
+      "LocalAuthorityId": 213,
+      "LocalAuthorityIdCode": "776",
+      "Name": "Glasgow City",
+      "EstablishmentCount": 5166,
+      "SchemeType": 2,
+      "links": [
+        {
+          "rel": "self",
+          "href": "http://api.ratings.food.gov.uk/authorities/213"
+        }
+      ]
+    },
+    {
+      "LocalAuthorityId": 397,
+      "LocalAuthorityIdCode": "413",
+      "Name": "Leeds",
+      "EstablishmentCount": 5053,
+      "SchemeType": 1,
+      "links": [
+        {
+          "rel": "self",
+          "href": "http://api.ratings.food.gov.uk/authorities/397"
+        }
+      ]
+    },
+    {
+      "LocalAuthorityId": 180,
+      "LocalAuthorityIdCode": "415",
+      "Name": "Manchester",
+      "EstablishmentCount": 4168,
+      "SchemeType": 1,
+      "links": [
+        {
+          "rel": "self",
+          "href": "http://api.ratings.food.gov.uk/authorities/180"
+        }
+      ]
+    }
+  ]
+}
